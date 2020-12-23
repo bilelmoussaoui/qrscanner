@@ -1,0 +1,4 @@
+data/com.belmoussaoui.qrscanner.desktop.in
+data/com.belmoussaoui.qrscanner.appdata.xml.in
+data/com.belmoussaoui.qrscanner.gschema.xml
+src/window.ui
