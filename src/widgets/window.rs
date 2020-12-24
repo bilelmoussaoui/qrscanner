@@ -1,9 +1,6 @@
 use crate::{application::Application, config, qrcode::QRCode, widgets::QRCodePaintable};
-use glib::{clone, signal::Inhibit};
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, prelude::*, CompositeTemplate};
-use gtk_macros::{action, get_action};
-use once_cell::sync::OnceCell;
 
 mod imp {
     use super::*;
@@ -14,6 +11,8 @@ mod imp {
     pub struct Window {
         #[template_child]
         pub picture: TemplateChild<gtk::Picture>,
+        #[template_child]
+        pub dark_mode_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub textview: TemplateChild<gtk::TextView>,
         pub qrcode_paintable: QRCodePaintable,
@@ -32,6 +31,7 @@ mod imp {
             Self {
                 picture: TemplateChild::default(),
                 textview: TemplateChild::default(),
+                dark_mode_button: TemplateChild::default(),
                 qrcode_paintable: QRCodePaintable::new(),
             }
         }
@@ -89,6 +89,16 @@ impl Window {
             .picture
             .get()
             .set_paintable(Some(&self_.qrcode_paintable));
+
+        let gtk_settings = gtk::Settings::get_default().unwrap();
+        let dark_mode_button = self_.dark_mode_button.get();
+        gtk_settings.connect_property_gtk_application_prefer_dark_theme_notify(move |settings| {
+            if !settings.get_property_gtk_application_prefer_dark_theme() {
+                dark_mode_button.set_icon_name("dark-mode-symbolic");
+            } else {
+                dark_mode_button.set_icon_name("light-mode-symbolic");
+            }
+        });
 
         self_.textview.get().get_buffer().connect_changed(
             glib::clone!(@weak self as win => move |buffer| {

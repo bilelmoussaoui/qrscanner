@@ -17,10 +17,10 @@ pkgdatadir = datadir / meson.project_name()
 iconsdir = datadir / 'icons'
 podir = meson.source_root () / 'po'
 gettext_package = meson.project_name()
-
+base_id = 'com.belmoussaoui.qrscanner'
 
 if get_option('profile') == 'development'
-  application_id = 'com.belmoussaoui.qrscanner.Devel'
+  application_id = base_id + '.Devel'
   profile = 'Devel'
   vcs_tag = run_command('git', 'rev-parse', '--short', 'HEAD').stdout().strip()
   if vcs_tag == ''
@@ -31,7 +31,7 @@ if get_option('profile') == 'development'
 else
   profile = ''
   version_suffix = ''
-  application_id = 'com.belmoussaoui.qrscanner'
+  application_id = base_id
 endif
 
 cargo_sources = files(

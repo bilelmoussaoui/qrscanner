@@ -19,6 +19,15 @@
                             <property name="stack">stack</property>
                           </object>
                         </child>
+                        <child type="start">
+                          <object class="GtkButton" id="dark_mode_button">
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="action-name">app.dark-mode</property>
+                            <property name="tooltip-text" translatable="yes">Toggle Dark Mode</property>
+                            <property name="icon-name">dark-mode-symbolic</property>
+                          </object>
+                        </child>
                         <style>
                           <class name="titlebar" />
                         </style>

@@ -3,14 +3,14 @@ use gettextrs::gettext;
 use glib::clone;
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, prelude::*};
-use gtk_macros::{action, get_action};
+use gtk_macros::{action, stateful_action};
 use std::env;
 
 mod imp {
     use super::*;
     use glib::{subclass, WeakRef};
 
-    use std::cell::{Cell, RefCell};
+    use std::cell::RefCell;
 
     pub struct Application {
         pub window: RefCell<Option<WeakRef<Window>>>,
@@ -30,6 +30,7 @@ mod imp {
             )
         }),
     ];
+
     impl ObjectSubclass for Application {
         const NAME: &'static str = "Application";
         type ParentType = gtk::Application;
@@ -65,6 +66,7 @@ mod imp {
                 gtk::StyleContext::add_provider_for_display(display, &p, 500);
                 let theme = gtk::IconTheme::get_for_display(display).unwrap();
                 theme.add_resource_path("/com/belmoussaoui/qrscanner/icons/");
+                app.set_resource_base_path(Some("/com/belmoussaoui/qrscanner/"));
             }
 
             action!(app, "quit", clone!(@weak app => move |_, _| app.quit()));
@@ -106,17 +108,39 @@ mod imp {
             window.present();
             self.window.replace(Some(window.downgrade()));
 
-            app.set_resource_base_path(Some("/com/belmoussaoui/qrscanner"));
+            let settings = gio::Settings::new(config::APP_ID);
+            let gtk_settings = gtk::Settings::get_default().unwrap();
+            settings
+                .bind(
+                    "dark-mode",
+                    &gtk_settings,
+                    "gtk-application-prefer-dark-theme",
+                )
+                .flags(gio::SettingsBindFlags::DEFAULT)
+                .build();
+
+            let is_dark_mode = settings.get_boolean("dark-mode");
+            stateful_action!(app, "dark-mode", is_dark_mode, move |action, _| {
+                let state = action.get_state().unwrap();
+                let action_state: bool = state.get().unwrap();
+                let is_dark_mode = !action_state;
+                action.set_state(&is_dark_mode.to_variant());
+                if let Err(err) = settings.set_boolean("dark-mode", is_dark_mode) {
+                    error!("Failed to switch dark mode: {} ", err);
+                }
+            });
+
             app.set_accels_for_action("app.quit", &["<primary>q"]);
+            app.set_accels_for_action("app.dark-mode", &["<primary>t"]);
             app.set_accels_for_action("win.show-help-overlay", &["<primary>question"]);
-            app.set_accels_for_action("add.scan-qr", &["<primary>t"]);
+            app.set_accels_for_action("add.scan-qr", &["<primary>s"]);
         }
     }
 }
 
 glib::wrapper! {
     pub struct Application(ObjectSubclass<imp::Application>)
-        @extends gio::Application, gtk::Application, gio::ActionMap;
+        @extends gio::Application, gtk::Application, gio::ActionMap, gio::ActionGroup;
 }
 
 impl Application {
@@ -136,7 +160,6 @@ impl Application {
     }
 
     fn create_window(&self) -> Window {
-        let self_ = imp::Application::from_instance(self);
         Window::new(&self.clone())
     }
 }

@@ -1,9 +1,7 @@
 #[macro_use]
 extern crate log;
-
 use gettextrs::*;
 use gtk::gio;
-use gtk::prelude::*;
 
 mod application;
 mod config;
