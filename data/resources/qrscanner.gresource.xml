@@ -8,5 +8,6 @@
     <file alias="dark-mode-symbolic.svg">icons/dark-mode-symbolic.svg</file>
     <file alias="light-mode-symbolic.svg">icons/light-mode-symbolic.svg</file>
     <file alias="qrscanner-mode-symbolic.svg">icons/qrscanner-symbolic.svg</file>
+    <file alias="archives-symbolic.svg">icons/archives-symbolic.svg</file>
   </gresource>
 </gresources>

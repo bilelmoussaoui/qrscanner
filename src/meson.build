@@ -21,6 +21,7 @@ run_command(
 )
 
 rust_sources = files(
+  'widgets/camera.rs',
   'widgets/mod.rs',
   'widgets/qrcode.rs',
   'widgets/window.rs',

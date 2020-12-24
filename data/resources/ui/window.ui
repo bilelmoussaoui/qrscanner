@@ -54,8 +54,8 @@
                     <object class="GtkStack" id="stack">
                       <child>
                         <object class="GtkStackPage">
-                          <property name="name">generator</property>
-                          <property name="title" translatable="yes">Generator</property>
+                          <property name="name">create</property>
+                          <property name="title" translatable="yes">Create</property>
                           <property name="icon-name">image-x-generic-symbolic</property>
                           <property name="child">
                             <object class="GtkScrolledWindow">
@@ -69,13 +69,44 @@
                                 <child>
                                   <object class="GtkBox">
                                     <property name="orientation">vertical</property>
-                                    <property name="margin-top">24</property>
                                     <child>
                                       <object class="GtkPicture" id="picture">
-                                        <property name="width-request">200</property>
-                                        <property name="height-request">200</property>
+                                        <property name="width-request">250</property>
+                                        <property name="height-request">250</property>
                                         <property name="halign">center</property>
+                                        <property name="margin-top">34</property>
+                                        <property name="margin-bottom">24</property>
                                         <property name="valign">center</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="orientation">horizontal</property>
+                                        <property name="halign">center</property>
+                                        <property name="margin-bottom">12</property>
+                                        <style>
+                                          <class name="linked" />
+                                        </style>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <property name="label">_Copy</property>
+                                            <property name="use-underline">True</property>
+                                            <style>
+                                              <class name="large-button" />
+                                              <class name="pill-button" />
+                                            </style>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkButton">
+                                            <property name="label">_Save</property>
+                                            <property name="use-underline">True</property>
+                                            <style>
+                                              <class name="large-button" />
+                                              <class name="pill-button" />
+                                            </style>
+                                          </object>
+                                        </child>
                                       </object>
                                     </child>
                                     <child>
@@ -89,6 +120,7 @@
                                     <child>
                                       <object class="GtkTextView" id="textview">
                                         <property name="margin-top">24</property>
+                                        <property name="margin-bottom">24</property>
                                         <property name="height-request">140</property>
                                       </object>
                                     </child>
@@ -102,9 +134,21 @@
                       </child>
                       <child>
                         <object class="GtkStackPage">
-                          <property name="name">scanner</property>
-                          <property name="title" translatable="yes">Scanner</property>
+                          <property name="name">scan</property>
+                          <property name="title" translatable="yes">Scan</property>
                           <property name="icon-name">camera-photo-symbolic</property>
+                          <property name="child">
+                            <object class="GtkPicture" id="camera_picture">
+
+                            </object>
+                          </property>
+                        </object>
+                      </child>
+                      <child>
+                        <object class="GtkStackPage">
+                          <property name="name">history</property>
+                          <property name="title" translatable="yes">History</property>
+                          <property name="icon-name">archives-symbolic</property>
                           <property name="child">
                             <object class="GtkLabel">
                               <property name="label">scannr world</property>

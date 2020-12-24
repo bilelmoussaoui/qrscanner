@@ -42,14 +42,17 @@ mod imp {
             height: f64,
         ) {
             let snapshot = snapshot.downcast_ref::<gtk::Snapshot>().unwrap();
-            let square_size = 8f32; // Each square is 16px
             let is_dark_theme = gtk::Settings::get_default()
                 .unwrap()
                 .get_property_gtk_application_prefer_dark_theme();
 
             if let Some(ref qrcode) = *self.qrcode.borrow() {
-                let start_pos_x = ((width as f32) - (qrcode.width as f32) * square_size) / 2f32;
-                let start_pos_y = ((height as f32) - (qrcode.height as f32) * square_size) / 2f32;
+                let square_width = (width as f32)
+                    .div_euclid(qrcode.width as f32);
+                let square_height = (height as f32).div_euclid(qrcode.height as f32);
+
+                let start_pos_x = ((width as f32) - (qrcode.width as f32) * square_width) / 2f32;
+                let start_pos_y = ((height as f32) - (qrcode.height as f32) * square_height) / 2f32;
 
                 qrcode.items.iter().enumerate().for_each(|(y, line)| {
                     line.iter().enumerate().for_each(|(x, is_dark)| {
@@ -68,10 +71,10 @@ mod imp {
                             }
                         };
                         let position = graphene::Rect::new(
-                            start_pos_x + (x as f32) * square_size,
-                            start_pos_y + (y as f32) * square_size,
-                            square_size,
-                            square_size,
+                            start_pos_x + (x as f32) * square_width,
+                            start_pos_y + (y as f32) * square_height,
+                            square_width,
+                            square_height,
                         );
 
                         snapshot.append_color(&color, &position);

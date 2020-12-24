@@ -1,4 +1,4 @@
-use crate::{application::Application, config, qrcode::QRCode, widgets::QRCodePaintable};
+use crate::{application::Application, config, qrcode::QRCode, widgets::{CameraPaintable, QRCodePaintable}};
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, prelude::*, CompositeTemplate};
 
@@ -12,6 +12,8 @@ mod imp {
         #[template_child]
         pub picture: TemplateChild<gtk::Picture>,
         #[template_child]
+        pub camera_picture: TemplateChild<gtk::Picture>,
+        #[template_child]
         pub dark_mode_button: TemplateChild<gtk::Button>,
         #[template_child]
         pub view_switcher_title: TemplateChild<libhandy::ViewSwitcherTitle>,
@@ -20,6 +22,7 @@ mod imp {
         #[template_child]
         pub textview: TemplateChild<gtk::TextView>,
         pub qrcode_paintable: QRCodePaintable,
+        pub camera_paintable: CameraPaintable,
     }
 
     impl ObjectSubclass for Window {
@@ -34,10 +37,12 @@ mod imp {
         fn new() -> Self {
             Self {
                 picture: TemplateChild::default(),
+                camera_picture: TemplateChild::default(),
                 textview: TemplateChild::default(),
                 dark_mode_button: TemplateChild::default(),
                 switcher_bar: TemplateChild::default(),
                 view_switcher_title: TemplateChild::default(),
+                camera_paintable: CameraPaintable::new(),
                 qrcode_paintable: QRCodePaintable::new(),
             }
         }
@@ -95,6 +100,9 @@ impl Window {
             .picture
             .get()
             .set_paintable(Some(&self_.qrcode_paintable));
+        self_.camera_picture
+            .get()
+            .set_paintable(Some(&self_.camera_paintable));
 
         let gtk_settings = gtk::Settings::get_default().unwrap();
         let dark_mode_button = self_.dark_mode_button.get();

@@ -3,3 +3,17 @@ textview {
   border-radius: 8px;
   padding: 18px;
 }
+.large-button {
+  padding: 6px 32px;
+}
+.pill-button {
+  border-radius: 9999px;
+}
+.linked .pill-button:first-child {
+  border-bottom-right-radius:0;
+  border-top-right-radius:0;
+}
+.linked .pill-button:last-child {
+  border-bottom-left-radius:0;
+  border-top-left-radius:0;
+}
