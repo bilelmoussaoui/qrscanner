@@ -1,3 +1,6 @@
-pub static PKGDATADIR: &str = @pkgdatadir@;
+pub static APP_ID: &str = @APP_ID@;
+pub static PKGDATADIR: &str = @PKGDATADIR@;
+pub static PROFILE: &str = @PROFILE@;
 pub static VERSION: &str = @VERSION@;
-pub static LOCALEDIR: &str = @localedir@;
+pub static GETTEXT_PACKAGE: &str = @GETTEXT_PACKAGE@;
+pub static LOCALEDIR: &str = @LOCALEDIR@;

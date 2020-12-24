@@ -1,3 +1,5 @@
+gnome = import('gnome')
+
 desktop_file = i18n.merge_file(
   input: 'com.belmoussaoui.qrscanner.desktop.in',
   output: 'com.belmoussaoui.qrscanner.desktop',
@@ -39,3 +41,12 @@ if compile_schemas.found()
     args: ['--strict', '--dry-run', meson.current_source_dir()]
   )
 endif
+
+gnome.compile_resources('qrscanner',
+  'resources/qrscanner.gresource.xml',
+  source_dir: ['./resources'],
+  gresource_bundle: true,
+  install: true,
+  install_dir: pkgdatadir,
+)
+

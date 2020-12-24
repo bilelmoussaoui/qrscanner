@@ -1,17 +1,10 @@
-pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-gnome = import('gnome')
-
-gnome.compile_resources('qrscanner',
-  'qrscanner.gresource.xml',
-  gresource_bundle: true,
-  install: true,
-  install_dir: pkgdatadir,
-)
-
 conf = configuration_data()
-conf.set_quoted('VERSION', meson.project_version())
-conf.set_quoted('localedir', join_paths(get_option('prefix'), get_option('localedir')))
-conf.set_quoted('pkgdatadir', pkgdatadir)
+conf.set_quoted('APP_ID', application_id)
+conf.set_quoted('PKGDATADIR', pkgdatadir)
+conf.set_quoted('PROFILE', profile)
+conf.set_quoted('VERSION', version + version_suffix)
+conf.set_quoted('GETTEXT_PACKAGE', gettext_package)
+conf.set_quoted('LOCALEDIR', localedir)
 
 configure_file(
     input: 'config.rs.in',
@@ -28,9 +21,13 @@ run_command(
 )
 
 rust_sources = files(
+  'widgets/mod.rs',
+  'widgets/qrcode.rs',
+  'widgets/window.rs',
+  'application.rs',
   'config.rs',
   'main.rs',
-  'window.rs',
+  'qrcode.rs',
 )
 
 sources = [cargo_sources, rust_sources]
