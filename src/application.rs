@@ -16,21 +16,6 @@ mod imp {
         pub window: RefCell<Option<WeakRef<Window>>>,
     }
 
-    static PROPERTIES: [subclass::Property; 2] = [
-        subclass::Property("locked", |name| {
-            glib::ParamSpec::boolean(name, "locked", "locked", false, glib::ParamFlags::READWRITE)
-        }),
-        subclass::Property("can-be-locked", |name| {
-            glib::ParamSpec::boolean(
-                name,
-                "can_be_locked",
-                "can be locked",
-                false,
-                glib::ParamFlags::READWRITE,
-            )
-        }),
-    ];
-
     impl ObjectSubclass for Application {
         const NAME: &'static str = "Application";
         type ParentType = gtk::Application;
@@ -39,10 +24,6 @@ mod imp {
         type Class = subclass::simple::ClassStruct<Self>;
 
         glib::object_subclass!();
-
-        fn class_init(klass: &mut Self::Class) {
-            //klass.install_properties(&PROPERTIES);
-        }
 
         fn new() -> Self {
             Self {
@@ -78,13 +59,12 @@ mod imp {
                 clone!(@weak app => move |_, _| {
                     let window = app.get_active_window().unwrap();
                     let about_dialog = gtk::AboutDialogBuilder::new()
-                        .program_name(&gettext("Authenticator"))
+                        .program_name(&gettext("QR Scanner"))
                         .modal(true)
                         .version(config::VERSION)
-                        .comments(&gettext("Generate Two-Factor Codes"))
-                        .website("https://gitlab.gnome.org/World/Authenticator")
+                        .comments(&gettext("Scan and generate QR codes"))
+                        .website("https://github.com/bilelmoussaoui/qrscanner/")
                         .authors(vec!["Bilal Elmoussaoui".to_string()])
-                        .artists(vec!["Alexandros Felekidis".to_string(), "Tobias Bernard".to_string()])
                         .translator_credits(&gettext("translator-credits"))
                         .logo_icon_name(config::APP_ID)
                         .license_type(gtk::License::Gpl30)

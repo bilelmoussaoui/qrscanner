@@ -14,6 +14,10 @@ mod imp {
         #[template_child]
         pub dark_mode_button: TemplateChild<gtk::Button>,
         #[template_child]
+        pub view_switcher_title: TemplateChild<libhandy::ViewSwitcherTitle>,
+        #[template_child]
+        pub switcher_bar: TemplateChild<libhandy::ViewSwitcherBar>,
+        #[template_child]
         pub textview: TemplateChild<gtk::TextView>,
         pub qrcode_paintable: QRCodePaintable,
     }
@@ -32,6 +36,8 @@ mod imp {
                 picture: TemplateChild::default(),
                 textview: TemplateChild::default(),
                 dark_mode_button: TemplateChild::default(),
+                switcher_bar: TemplateChild::default(),
+                view_switcher_title: TemplateChild::default(),
                 qrcode_paintable: QRCodePaintable::new(),
             }
         }
@@ -99,6 +105,14 @@ impl Window {
                 dark_mode_button.set_icon_name("light-mode-symbolic");
             }
         });
+
+        let switcher_bar = self_.switcher_bar.get();
+        self_
+            .view_switcher_title
+            .get()
+            .connect_property_title_visible_notify(move |view_switcher| {
+                switcher_bar.set_reveal(view_switcher.get_title_visible());
+            });
 
         self_.textview.get().get_buffer().connect_changed(
             glib::clone!(@weak self as win => move |buffer| {
