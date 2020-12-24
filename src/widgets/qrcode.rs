@@ -56,6 +56,9 @@ mod imp {
         ) {
             let snapshot = snapshot.downcast_ref::<gtk::Snapshot>().unwrap();
             let square_size = 8f32; // Each square is 16px
+            let is_dark_theme = gtk::Settings::get_default()
+                .unwrap()
+                .get_property_gtk_application_prefer_dark_theme();
 
             if let Some(ref qrcode) = *self.qrcode.borrow() {
                 let start_pos_x = ((width as f32) - (qrcode.width as f32) * square_size) / 2f32;
@@ -64,7 +67,11 @@ mod imp {
                 qrcode.items.iter().enumerate().for_each(|(y, line)| {
                     line.iter().enumerate().for_each(|(x, is_dark)| {
                         let color = if *is_dark {
-                            gdk::RGBA::black()
+                            if is_dark_theme {
+                                gdk::RGBA::white()
+                            } else {
+                                gdk::RGBA::black()
+                            }
                         } else {
                             gdk::RGBA {
                                 red: 0.0,

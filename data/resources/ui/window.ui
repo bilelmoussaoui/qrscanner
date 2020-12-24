@@ -19,6 +19,9 @@
                             <property name="stack">stack</property>
                           </object>
                         </child>
+                        <style>
+                          <class name="titlebar" />
+                        </style>
                       </object>
                     </child>
                     <child>
@@ -30,9 +33,12 @@
                             <property name="icon-name">image-x-generic-symbolic</property>
                             <property name="child">
                               <object class="HdyClamp">
+                                <property name="maximum-size">380</property>
+
                               <child>
                                 <object class="GtkBox">
                                   <property name="orientation">vertical</property>
+                                  <property name="margin-top">48</property>
                                   <child>
                                     <object class="GtkPicture" id="picture">
                                       <property name="width-request">200</property>
