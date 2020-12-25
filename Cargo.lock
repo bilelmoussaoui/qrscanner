@@ -59,7 +59,7 @@ checksum = "08c48aae112d48ed9f069b33538ea9e3e90aa263cfa3d1c24309612b1f7472de"
 [[package]]
 name = "cairo-rs"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "bitflags",
  "cairo-sys-rs",
@@ -72,7 +72,7 @@ dependencies = [
 [[package]]
 name = "cairo-sys-rs"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "glib-sys",
  "libc",
@@ -90,6 +90,12 @@ name = "cfg-if"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4785bdd1c96b2a846b2bd7cc02e86b6b3dbf14e7e53446c4f54c92a361040822"
+
+[[package]]
+name = "cfg-if"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "checked_int_cast"
@@ -260,7 +266,7 @@ dependencies = [
 [[package]]
 name = "gdk-pixbuf"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "gdk-pixbuf-sys",
  "gio",
@@ -271,7 +277,7 @@ dependencies = [
 [[package]]
 name = "gdk-pixbuf-sys"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "gio-sys",
  "glib-sys",
@@ -332,7 +338,7 @@ dependencies = [
 [[package]]
 name = "gio"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "bitflags",
  "futures",
@@ -350,7 +356,7 @@ dependencies = [
 [[package]]
 name = "gio-sys"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "glib-sys",
  "gobject-sys",
@@ -362,7 +368,7 @@ dependencies = [
 [[package]]
 name = "glib"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "bitflags",
  "futures-channel",
@@ -381,7 +387,7 @@ dependencies = [
 [[package]]
 name = "glib-macros"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "anyhow",
  "heck",
@@ -396,7 +402,7 @@ dependencies = [
 [[package]]
 name = "glib-sys"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "libc",
  "system-deps",
@@ -405,7 +411,7 @@ dependencies = [
 [[package]]
 name = "gobject-sys"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "glib-sys",
  "libc",
@@ -415,7 +421,7 @@ dependencies = [
 [[package]]
 name = "graphene-rs"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "glib",
  "graphene-sys",
@@ -425,7 +431,7 @@ dependencies = [
 [[package]]
 name = "graphene-sys"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "glib-sys",
  "libc",
@@ -460,6 +466,118 @@ dependencies = [
  "graphene-sys",
  "libc",
  "pango-sys",
+ "system-deps",
+]
+
+[[package]]
+name = "gstreamer"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "bitflags",
+ "cfg-if 1.0.0",
+ "futures-channel",
+ "futures-core",
+ "futures-util",
+ "glib",
+ "gstreamer-sys",
+ "libc",
+ "muldiv",
+ "num-rational",
+ "once_cell",
+ "paste",
+ "pretty-hex",
+ "thiserror",
+]
+
+[[package]]
+name = "gstreamer-base"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "bitflags",
+ "glib",
+ "gstreamer",
+ "gstreamer-base-sys",
+ "libc",
+]
+
+[[package]]
+name = "gstreamer-base-sys"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "gstreamer-sys",
+ "libc",
+ "system-deps",
+]
+
+[[package]]
+name = "gstreamer-player"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "bitflags",
+ "glib",
+ "gstreamer",
+ "gstreamer-player-sys",
+ "gstreamer-video",
+ "libc",
+]
+
+[[package]]
+name = "gstreamer-player-sys"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "gstreamer-sys",
+ "gstreamer-video-sys",
+ "libc",
+ "system-deps",
+]
+
+[[package]]
+name = "gstreamer-sys"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "system-deps",
+]
+
+[[package]]
+name = "gstreamer-video"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "bitflags",
+ "cfg-if 1.0.0",
+ "futures-channel",
+ "futures-util",
+ "glib",
+ "gstreamer",
+ "gstreamer-base",
+ "gstreamer-video-sys",
+ "libc",
+ "once_cell",
+]
+
+[[package]]
+name = "gstreamer-video-sys"
+version = "0.17.0"
+source = "git+https://gitlab.freedesktop.org/bilelmoussaoui/gstreamer-rs?branch=bilelmoussaoui/gst-player#01b16fe6c0a55cb40cfb87113fe2d165c91078e0"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "gstreamer-base-sys",
+ "gstreamer-sys",
+ "libc",
  "system-deps",
 ]
 
@@ -588,7 +706,7 @@ checksum = "1482821306169ec4d07f6aca392a4681f66c75c9918aa49641a2595db64053cb"
 [[package]]
 name = "libhandy4"
 version = "0.1.0"
-source = "git+https://gitlab.gnome.org/bilelmoussaoui/libhandy4-rs#511b3e4a398aacb9ffa30ccff9926955e135b7bc"
+source = "git+https://gitlab.gnome.org/bilelmoussaoui/libhandy4-rs#ea059551d1e0c2f77a483f37ad83eb5b358d4c5d"
 dependencies = [
  "bitflags",
  "gdk-pixbuf",
@@ -605,7 +723,7 @@ dependencies = [
 [[package]]
 name = "libhandy4-sys"
 version = "0.1.0"
-source = "git+https://gitlab.gnome.org/bilelmoussaoui/libhandy4-rs#511b3e4a398aacb9ffa30ccff9926955e135b7bc"
+source = "git+https://gitlab.gnome.org/bilelmoussaoui/libhandy4-rs#ea059551d1e0c2f77a483f37ad83eb5b358d4c5d"
 dependencies = [
  "gdk-pixbuf-sys",
  "gdk4-sys",
@@ -637,7 +755,7 @@ version = "0.4.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4fabed175da42fed1fa0746b0ea71f412aa9d35e76e95e59b192c64b9dc2bf8b"
 dependencies = [
- "cfg-if",
+ "cfg-if 0.1.10",
 ]
 
 [[package]]
@@ -663,6 +781,12 @@ checksum = "043175f069eda7b85febe4a74abbaeff828d9f8b448515d3151a14a3542811aa"
 dependencies = [
  "autocfg",
 ]
+
+[[package]]
+name = "muldiv"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b5136edda114182728ccdedb9f5eda882781f35fa6e80cc360af12a8932507f3"
 
 [[package]]
 name = "num-integer"
@@ -743,7 +867,7 @@ checksum = "13bd41f508810a131401606d54ac32a467c97172d74ba7662562ebba5ad07fa0"
 [[package]]
 name = "pango"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "bitflags",
  "glib",
@@ -755,13 +879,19 @@ dependencies = [
 [[package]]
 name = "pango-sys"
 version = "0.13.0"
-source = "git+https://github.com/gtk-rs/gtk-rs#46ed982c1698e6657e455ebc697cc3596ebb4da0"
+source = "git+https://github.com/gtk-rs/gtk-rs#5bef67e514ed653f85e5486b01a1d601b8fc00b0"
 dependencies = [
  "glib-sys",
  "gobject-sys",
  "libc",
  "system-deps",
 ]
+
+[[package]]
+name = "paste"
+version = "1.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c5d65c4d95931acda4498f675e332fcbdc9a06705cd07086c510e9b6009cd1c1"
 
 [[package]]
 name = "pin-project"
@@ -794,6 +924,12 @@ name = "pkg-config"
 version = "0.3.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3831453b3449ceb48b6d9c7ad7c96d5ea673e9b470a1dc578c2ce6521230884c"
+
+[[package]]
+name = "pretty-hex"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bc5c99d529f0d30937f6f4b8a86d988047327bb88d04d2c4afc356de74722131"
 
 [[package]]
 name = "pretty_env_logger"
@@ -874,6 +1010,10 @@ name = "qrscanner"
 version = "0.1.0"
 dependencies = [
  "gettext-rs",
+ "gstreamer",
+ "gstreamer-base",
+ "gstreamer-player",
+ "gstreamer-video",
  "gtk-macros",
  "gtk4",
  "libhandy4",

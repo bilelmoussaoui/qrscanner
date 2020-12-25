@@ -1,4 +1,9 @@
-use crate::{application::Application, config, qrcode::QRCode, widgets::{CameraPaintable, QRCodePaintable}};
+use crate::{
+    application::Application,
+    config,
+    qrcode::QRCode,
+    widgets::{CameraPaintable, QRCodeCreatePage, QRCodePage},
+};
 use gtk::subclass::prelude::*;
 use gtk::{gio, glib, prelude::*, CompositeTemplate};
 
@@ -10,7 +15,11 @@ mod imp {
     #[derive(Debug, CompositeTemplate)]
     pub struct Window {
         #[template_child]
-        pub picture: TemplateChild<gtk::Picture>,
+        pub deck: TemplateChild<libhandy::Leaflet>,
+        #[template_child]
+        pub create_page: TemplateChild<QRCodeCreatePage>,
+        #[template_child]
+        pub code_page: TemplateChild<QRCodePage>,
         #[template_child]
         pub camera_picture: TemplateChild<gtk::Picture>,
         #[template_child]
@@ -19,10 +28,8 @@ mod imp {
         pub view_switcher_title: TemplateChild<libhandy::ViewSwitcherTitle>,
         #[template_child]
         pub switcher_bar: TemplateChild<libhandy::ViewSwitcherBar>,
-        #[template_child]
-        pub textview: TemplateChild<gtk::TextView>,
-        pub qrcode_paintable: QRCodePaintable,
         pub camera_paintable: CameraPaintable,
+        pub player: gst_player::Player,
     }
 
     impl ObjectSubclass for Window {
@@ -35,19 +42,31 @@ mod imp {
         glib::object_subclass!();
 
         fn new() -> Self {
+            let ctx = gst_player::PlayerGMainContextSignalDispatcher::new(
+                glib::MainContext::get_thread_default().as_ref(),
+            );
+            let camera_paintable = CameraPaintable::new();
+            let player = gst_player::Player::new(
+                Some(&camera_paintable.clone().upcast()),
+                Some(&ctx.upcast()),
+            );
+
             Self {
-                picture: TemplateChild::default(),
+                player,
+                camera_paintable,
+                deck: TemplateChild::default(),
                 camera_picture: TemplateChild::default(),
-                textview: TemplateChild::default(),
+                create_page: TemplateChild::default(),
+                code_page: TemplateChild::default(),
                 dark_mode_button: TemplateChild::default(),
                 switcher_bar: TemplateChild::default(),
                 view_switcher_title: TemplateChild::default(),
-                camera_paintable: CameraPaintable::new(),
-                qrcode_paintable: QRCodePaintable::new(),
             }
         }
 
         fn class_init(klass: &mut Self::Class) {
+            QRCodeCreatePage::static_type();
+            QRCodePage::static_type();
             klass.set_template_from_resource("/com/belmoussaoui/qrscanner/ui/window.ui");
             Self::bind_template_children(klass);
         }
@@ -86,21 +105,33 @@ impl Window {
         window
     }
 
-    pub fn regen_qrcode(&self, for_content: &str) {
+    pub fn show_code_detected(&self, code: QRCode) {
         let self_ = imp::Window::from_instance(self);
-
-        let qrcode = QRCode::from_string(for_content);
-        self_.qrcode_paintable.set_qrcode(qrcode);
+        self_.code_page.get().set_qrcode(code);
+        self_.deck.get().set_visible_child_name("code");
     }
 
     fn init(&self) {
         let self_ = imp::Window::from_instance(self);
 
+        self_.player.play();
+
         self_
-            .picture
-            .get()
-            .set_paintable(Some(&self_.qrcode_paintable));
-        self_.camera_picture
+            .camera_paintable
+            .connect_local(
+                "code-detected",
+                false,
+                glib::clone!(@weak self as win => move |args| {
+                    let code = args.get(1).unwrap().get::<String>().unwrap().unwrap();
+                    win.show_code_detected(QRCode::from_string(&code));
+
+                    None
+                }),
+            )
+            .unwrap();
+
+        self_
+            .camera_picture
             .get()
             .set_paintable(Some(&self_.camera_paintable));
 
@@ -121,14 +152,6 @@ impl Window {
             .connect_property_title_visible_notify(move |view_switcher| {
                 switcher_bar.set_reveal(view_switcher.get_title_visible());
             });
-
-        self_.textview.get().get_buffer().connect_changed(
-            glib::clone!(@weak self as win => move |buffer| {
-                let (start_iter, end_iter) = buffer.get_bounds();
-                let content = buffer.get_text(&start_iter, &end_iter, true);
-                win.regen_qrcode(&content);
-            }),
-        );
     }
 
     fn setup_actions(&self, app: &Application) {}

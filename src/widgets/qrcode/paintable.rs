@@ -47,8 +47,7 @@ mod imp {
                 .get_property_gtk_application_prefer_dark_theme();
 
             if let Some(ref qrcode) = *self.qrcode.borrow() {
-                let square_width = (width as f32)
-                    .div_euclid(qrcode.width as f32);
+                let square_width = (width as f32).div_euclid(qrcode.width as f32);
                 let square_height = (height as f32).div_euclid(qrcode.height as f32);
 
                 let start_pos_x = ((width as f32) - (qrcode.width as f32) * square_width) / 2f32;

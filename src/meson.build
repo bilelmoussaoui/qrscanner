@@ -21,9 +21,12 @@ run_command(
 )
 
 rust_sources = files(
+  'widgets/qrcode/create.rs',
+  'widgets/qrcode/mod.rs',
+  'widgets/qrcode/page.rs',
+  'widgets/qrcode/paintable.rs',
   'widgets/camera.rs',
   'widgets/mod.rs',
-  'widgets/qrcode.rs',
   'widgets/window.rs',
   'application.rs',
   'config.rs',

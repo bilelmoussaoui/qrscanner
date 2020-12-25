@@ -5,12 +5,14 @@ use gtk::gio;
 
 mod application;
 mod config;
+
 mod qrcode;
 mod widgets;
 
 fn main() {
     pretty_env_logger::init();
     gtk::init().expect("failed to initialize gtk");
+    gst::init().expect("Failed to initalize gst");
     setlocale(LocaleCategory::LcAll, "");
     bindtextdomain(config::GETTEXT_PACKAGE, config::LOCALEDIR);
     textdomain(config::GETTEXT_PACKAGE);

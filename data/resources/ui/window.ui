@@ -13,7 +13,7 @@
     <property name="default-width">720</property>
     <property name="default-height">600</property>
     <child>
-      <object class="HdyLeaflet">
+      <object class="HdyLeaflet" id="deck">
         <property name="can-unfold">False</property>
         <child>
             <object class="HdyLeafletPage">
@@ -58,78 +58,8 @@
                           <property name="title" translatable="yes">Create</property>
                           <property name="icon-name">image-x-generic-symbolic</property>
                           <property name="child">
-                            <object class="GtkScrolledWindow">
-                            <property name="vexpand">True</property>
-                            <property name="min-content-width">340</property>
-                            <child>
-                              <object class="HdyClamp">
-                                <property name="maximum-size">380</property>
-                                <property name="margin-start">12</property>
-                                <property name="margin-end">12</property>
-                                <child>
-                                  <object class="GtkBox">
-                                    <property name="orientation">vertical</property>
-                                    <child>
-                                      <object class="GtkPicture" id="picture">
-                                        <property name="width-request">250</property>
-                                        <property name="height-request">250</property>
-                                        <property name="halign">center</property>
-                                        <property name="margin-top">34</property>
-                                        <property name="margin-bottom">24</property>
-                                        <property name="valign">center</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkBox">
-                                        <property name="orientation">horizontal</property>
-                                        <property name="halign">center</property>
-                                        <property name="margin-bottom">12</property>
-                                        <style>
-                                          <class name="linked" />
-                                        </style>
-                                        <child>
-                                          <object class="GtkButton">
-                                            <property name="label">_Copy</property>
-                                            <property name="use-underline">True</property>
-                                            <style>
-                                              <class name="large-button" />
-                                              <class name="pill-button" />
-                                            </style>
-                                          </object>
-                                        </child>
-                                        <child>
-                                          <object class="GtkButton">
-                                            <property name="label">_Save</property>
-                                            <property name="use-underline">True</property>
-                                            <style>
-                                              <class name="large-button" />
-                                              <class name="pill-button" />
-                                            </style>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label" translatable="yes">Type something to generate a QR code</property>
-                                        <style>
-                                          <class name="title-4" />
-                                        </style>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkTextView" id="textview">
-                                        <property name="margin-top">24</property>
-                                        <property name="margin-bottom">24</property>
-                                        <property name="height-request">140</property>
-                                      </object>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </property>
+                            <object class="QRCodeCreatePage" id="create_page" />
+                          </property>
                         </object>
                       </child>
                       <child>
@@ -139,7 +69,6 @@
                           <property name="icon-name">camera-photo-symbolic</property>
                           <property name="child">
                             <object class="GtkPicture" id="camera_picture">
-
                             </object>
                           </property>
                         </object>
@@ -166,6 +95,14 @@
                 </object>
               </property>
             </object>
+        </child>
+        <child>
+          <object class="HdyLeafletPage">
+            <property name="name">code</property>
+            <property name="child">
+              <object class="QRCodePage" id="code_page" />
+            </property>
+          </object>
         </child>
       </object>
     </child>
