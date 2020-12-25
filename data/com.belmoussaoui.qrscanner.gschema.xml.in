@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="qrscanner">
+	<schema id="@app-id@" gettext-domain="@gettext-package@" path="/com/belmoussaoui/qrscanner/">
+    <key name="dark-mode" type="b">
+      <default>false</default>
+      <summary>Enable or disable dark mode</summary>
+    </key>
+	</schema>
+</schemalist>
